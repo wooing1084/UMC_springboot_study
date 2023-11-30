@@ -3,6 +3,7 @@ package umc.spring.domain;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.MissionStatus;
+import umc.spring.domain.mapping.MyMission;
 
 import javax.persistence.*;
 import java.time.LocalDate;

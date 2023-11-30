@@ -1,6 +1,8 @@
-package umc.spring.domain;
+package umc.spring.domain.mapping;
 
 import lombok.*;
+import umc.spring.domain.Mission;
+import umc.spring.domain.User;
 import umc.spring.domain.common.BaseEntity;
 
 import javax.persistence.*;
