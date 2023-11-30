@@ -3,7 +3,7 @@ package umc.spring.domain;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.MissionStatus;
-import umc.spring.domain.mapping.MyMission;
+import umc.spring.domain.mapping.MissionApply;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -41,7 +41,7 @@ public class Mission extends BaseEntity {
     private Store store;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<MyMission> myMissionList = new ArrayList<>();
+    private List<MissionApply> missionApplyList = new ArrayList<>();
 
     public void setStore(Store store){
         this.store = store;

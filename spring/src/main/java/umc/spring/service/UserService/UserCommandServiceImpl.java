@@ -37,7 +37,7 @@ public class UserCommandServiceImpl implements UserCommandService {
 
         List<UserPrefer> userPreferList = UserPreferContoller.toUserPreferList(foodCategoryList);
 
-        userPreferList.forEach(memberPrefer -> {memberPrefer.setMember(newUser);});
+        userPreferList.forEach(memberPrefer -> {memberPrefer.setUser(newUser);});
 
         return userRepository.save(newUser);
     }

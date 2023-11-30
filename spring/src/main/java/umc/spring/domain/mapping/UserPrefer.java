@@ -26,7 +26,7 @@ public class UserPrefer extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void setMember(User user){
+    public void setUser(User user){
         if(this.user != null)
             user.getPreferList().remove(this);
         this.user = user;

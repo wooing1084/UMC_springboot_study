@@ -4,13 +4,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.TempHandler;
+import umc.spring.domain.Mission;
+import umc.spring.domain.User;
+import umc.spring.repository.MissionRepository;
+import umc.spring.repository.UserRepository;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class MissionQueryServiceImpl implements MissionQueryService {
+    private final MissionRepository missionRepository;
+
     @Override
-    public void CheckFlag(Integer flag) {
-        if (flag == 1)
-            throw new TempHandler(ErrorStatus.TEMP_EXCEPTION);
+    public Optional<Mission> findMission(Long id) {
+        return missionRepository.findById(id);
     }
 }
