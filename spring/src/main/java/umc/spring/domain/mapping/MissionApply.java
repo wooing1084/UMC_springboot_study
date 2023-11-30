@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MyMission extends BaseEntity {
+public class MissionApply extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,4 +26,18 @@ public class MyMission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public void setUser(User user){
+        if(this.user != null)
+            user.getMissionApplyList().remove(this);
+        this.user = user;
+        user.getMissionApplyList().add(this);
+    }
+
+    public void setMission(Mission mission){
+        if(this.mission != null)
+            mission.getMissionApplyList().remove(this);
+        this.mission = mission;
+        mission.getMissionApplyList().add(this);
+    }
 }
