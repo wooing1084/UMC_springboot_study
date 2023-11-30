@@ -18,8 +18,6 @@ public class UserConverter {
     }
 
     public static User toUser(UserRequestDTO.JoinDTO request) {
-
-
         Gender gender = null;
 
         switch (request.getGender()){
