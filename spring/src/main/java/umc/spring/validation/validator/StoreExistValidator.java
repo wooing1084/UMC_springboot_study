@@ -3,10 +3,10 @@ package umc.spring.validation.validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.spring.apiPayload.code.status.ErrorStatus;
-import umc.spring.domain.User;
-import umc.spring.repository.UserRepository;
-import umc.spring.service.UserService.UserQueryService;
-import umc.spring.validation.annotation.ExistCategories;
+import umc.spring.domain.Store;
+import umc.spring.repository.StoreRepository;
+import umc.spring.service.StoreService.StoreQueryService;
+import umc.spring.validation.annotation.ExistStores;
 import umc.spring.validation.annotation.ExistUsers;
 
 import javax.validation.ConstraintValidator;
@@ -16,22 +16,24 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class UserExistValidator implements ConstraintValidator<ExistUsers, Long> {
+public class StoreExistValidator implements ConstraintValidator<ExistStores, Long> {
 
-    private final UserQueryService userQueryService;
+    private final StoreQueryService storeQueryService;
 
     @Override
-    public void initialize(ExistUsers constraintAnnotation) {
+    public void initialize(ExistStores constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-        Optional<User> target = userQueryService.findMember(value);
+        Optional<Store> target = storeQueryService.findStore(value);
+
 
         if (target.isEmpty()) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.MEMBER_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.toString()).addConstraintViolation();
+
             return false;
         }
 

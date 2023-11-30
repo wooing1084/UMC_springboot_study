@@ -4,13 +4,19 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.TempHandler;
+import umc.spring.domain.User;
+import umc.spring.repository.UserRepository;
+
+import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserQueryServiceImpl implements UserQueryService {
+    private final UserRepository userRepository;
+
     @Override
-    public void CheckFlag(Integer flag) {
-        if (flag == 1)
-            throw new TempHandler(ErrorStatus.TEMP_EXCEPTION);
+    public Optional<User> findMember(Long id) {
+        return userRepository.findById(id);
     }
 }
