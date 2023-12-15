@@ -34,8 +34,8 @@ public class MissionRestController {
     }
 
     @PostMapping("/apply")
-    public ApiResponse<MissionApplyResponseDTO.makeMissionApplyDTO> applyMission(@RequestBody @Valid MissionApplyRequestDTO.ApplyMissionDTO request){
-        MissionApply missionApply = missionApplyCommandService.applyMission(request);
+    public ApiResponse<MissionApplyResponseDTO.makeMissionApplyDTO> applyMission(@RequestBody @Valid MissionApplyRequestDTO.ApplyMissionWrapper request){
+        MissionApply missionApply = missionApplyCommandService.applyMission(request.getApplyMissionDTO());
         return ApiResponse.onSuccess(MissionApplyConverter.toApplyMissionDTO(missionApply));
     }
 }

@@ -7,6 +7,7 @@ import umc.spring.domain.mapping.MissionApply;
 import umc.spring.repository.MissionApplyRepository;
 import umc.spring.repository.MissionRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,7 +16,7 @@ public class MissionApplyQueryServiceImpl implements MissionApplyQueryService {
     private final MissionApplyRepository missionApplyRepository;
 
     @Override
-    public Optional<MissionApply> findMissionApply(Long id) {
-        return missionApplyRepository.findById(id);
+    public Optional<List<MissionApply>> findByMissionIdAndUserId(Long userId, Long missionId) {
+        return missionApplyRepository.findByMissionIdAndUserId(missionId, userId);
     }
 }

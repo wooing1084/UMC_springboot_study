@@ -14,6 +14,8 @@ import umc.spring.repository.MissionRepository;
 import umc.spring.repository.UserRepository;
 import umc.spring.web.dto.MissionApplyRequestDTO;
 
+import javax.validation.Valid;
+
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +35,7 @@ public class MissionApplyCommandServiceImpl implements MissionApplyCommandServic
         Mission mission = missionRepository.findById(request.getMissionId()).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
         newMissionApply.setMission(mission);
 
-        User user = userRepository.findById(1L).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
+        User user = userRepository.findById(request.getUserId()).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
         newMissionApply.setUser(user);
 
         return missionApplyRepository.save(newMissionApply);
