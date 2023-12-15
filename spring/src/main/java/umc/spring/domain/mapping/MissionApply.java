@@ -4,6 +4,7 @@ import lombok.*;
 import umc.spring.domain.Mission;
 import umc.spring.domain.User;
 import umc.spring.domain.common.BaseEntity;
+import umc.spring.validation.annotation.DuplicatedMissionApply;
 
 import javax.persistence.*;
 
