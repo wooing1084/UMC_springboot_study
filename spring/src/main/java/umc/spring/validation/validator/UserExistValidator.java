@@ -4,14 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.domain.User;
-import umc.spring.repository.UserRepository;
 import umc.spring.service.UserService.UserQueryService;
-import umc.spring.validation.annotation.ExistCategories;
 import umc.spring.validation.annotation.ExistUsers;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -27,7 +24,7 @@ public class UserExistValidator implements ConstraintValidator<ExistUsers, Long>
 
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
-        Optional<User> target = userQueryService.findMember(value);
+        Optional<User> target = userQueryService.findUser(value);
 
         if (target.isEmpty()) {
             context.disableDefaultConstraintViolation();
